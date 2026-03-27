@@ -1260,6 +1260,7 @@ static struct meta_info_item meta_info_section_problem_data_data[] =
   [CNTSPROB_score_multiplier] = { CNTSPROB_score_multiplier, 'i', XSIZE(struct section_problem_data, score_multiplier), "score_multiplier", XOFFSET(struct section_problem_data, score_multiplier) },
   [CNTSPROB_prev_runs_to_show] = { CNTSPROB_prev_runs_to_show, 'i', XSIZE(struct section_problem_data, prev_runs_to_show), "prev_runs_to_show", XOFFSET(struct section_problem_data, prev_runs_to_show) },
   [CNTSPROB_max_user_run_count] = { CNTSPROB_max_user_run_count, 'i', XSIZE(struct section_problem_data, max_user_run_count), "max_user_run_count", XOFFSET(struct section_problem_data, max_user_run_count) },
+  [CNTSPROB_communication] = { CNTSPROB_communication, 'i', XSIZE(struct section_problem_data, communication), "communication", XOFFSET(struct section_problem_data, communication) },
   [CNTSPROB_long_name] = { CNTSPROB_long_name, 's', XSIZE(struct section_problem_data, long_name), "long_name", XOFFSET(struct section_problem_data, long_name) },
   [CNTSPROB_stand_name] = { CNTSPROB_stand_name, 's', XSIZE(struct section_problem_data, stand_name), "stand_name", XOFFSET(struct section_problem_data, stand_name) },
   [CNTSPROB_stand_column] = { CNTSPROB_stand_column, 's', XSIZE(struct section_problem_data, stand_column), "stand_column", XOFFSET(struct section_problem_data, stand_column) },
@@ -1287,6 +1288,7 @@ static struct meta_info_item meta_info_section_problem_data_data[] =
   [CNTSPROB_footer_pat] = { CNTSPROB_footer_pat, 's', XSIZE(struct section_problem_data, footer_pat), "footer_pat", XOFFSET(struct section_problem_data, footer_pat) },
   [CNTSPROB_compiler_env_pat] = { CNTSPROB_compiler_env_pat, 's', XSIZE(struct section_problem_data, compiler_env_pat), "compiler_env_pat", XOFFSET(struct section_problem_data, compiler_env_pat) },
   [CNTSPROB_container_options] = { CNTSPROB_container_options, 's', XSIZE(struct section_problem_data, container_options), "container_options", XOFFSET(struct section_problem_data, container_options) },
+  [CNTSPROB_communication_flags] = { CNTSPROB_communication_flags, 's', XSIZE(struct section_problem_data, communication_flags), "communication_flags", XOFFSET(struct section_problem_data, communication_flags) },
   [CNTSPROB_token_info] = { CNTSPROB_token_info, '?', XSIZE(struct section_problem_data, token_info), NULL, XOFFSET(struct section_problem_data, token_info) },
   [CNTSPROB_score_tests] = { CNTSPROB_score_tests, 's', XSIZE(struct section_problem_data, score_tests), "score_tests", XOFFSET(struct section_problem_data, score_tests) },
   [CNTSPROB_standard_checker] = { CNTSPROB_standard_checker, 's', XSIZE(struct section_problem_data, standard_checker), "standard_checker", XOFFSET(struct section_problem_data, standard_checker) },
@@ -1300,6 +1302,8 @@ static struct meta_info_item meta_info_section_problem_data_data[] =
   [CNTSPROB_source_footer] = { CNTSPROB_source_footer, 's', XSIZE(struct section_problem_data, source_footer), "source_footer", XOFFSET(struct section_problem_data, source_footer) },
   [CNTSPROB_interactor_time_limit] = { CNTSPROB_interactor_time_limit, 'i', XSIZE(struct section_problem_data, interactor_time_limit), "interactor_time_limit", XOFFSET(struct section_problem_data, interactor_time_limit) },
   [CNTSPROB_interactor_real_time_limit] = { CNTSPROB_interactor_real_time_limit, 'i', XSIZE(struct section_problem_data, interactor_real_time_limit), "interactor_real_time_limit", XOFFSET(struct section_problem_data, interactor_real_time_limit) },
+  [CNTSPROB_channel_time_limit] = { CNTSPROB_channel_time_limit, 'i', XSIZE(struct section_problem_data, channel_time_limit), "channel_time_limit", XOFFSET(struct section_problem_data, channel_time_limit) },
+  [CNTSPROB_channel_real_time_limit] = { CNTSPROB_channel_real_time_limit, 'i', XSIZE(struct section_problem_data, channel_real_time_limit), "channel_real_time_limit", XOFFSET(struct section_problem_data, channel_real_time_limit) },
   [CNTSPROB_custom_compile_cmd] = { CNTSPROB_custom_compile_cmd, 's', XSIZE(struct section_problem_data, custom_compile_cmd), "custom_compile_cmd", XOFFSET(struct section_problem_data, custom_compile_cmd) },
   [CNTSPROB_custom_lang_name] = { CNTSPROB_custom_lang_name, 's', XSIZE(struct section_problem_data, custom_lang_name), "custom_lang_name", XOFFSET(struct section_problem_data, custom_lang_name) },
   [CNTSPROB_extra_src_dir] = { CNTSPROB_extra_src_dir, 's', XSIZE(struct section_problem_data, extra_src_dir), "extra_src_dir", XOFFSET(struct section_problem_data, extra_src_dir) },
@@ -1338,6 +1342,7 @@ static struct meta_info_item meta_info_section_problem_data_data[] =
   [CNTSPROB_checker_env] = { CNTSPROB_checker_env, 'X', XSIZE(struct section_problem_data, checker_env), "checker_env", XOFFSET(struct section_problem_data, checker_env) },
   [CNTSPROB_valuer_env] = { CNTSPROB_valuer_env, 'X', XSIZE(struct section_problem_data, valuer_env), "valuer_env", XOFFSET(struct section_problem_data, valuer_env) },
   [CNTSPROB_interactor_env] = { CNTSPROB_interactor_env, 'X', XSIZE(struct section_problem_data, interactor_env), "interactor_env", XOFFSET(struct section_problem_data, interactor_env) },
+  [CNTSPROB_channel_env] = { CNTSPROB_channel_env, 'X', XSIZE(struct section_problem_data, channel_env), "channel_env", XOFFSET(struct section_problem_data, channel_env) },
   [CNTSPROB_style_checker_env] = { CNTSPROB_style_checker_env, 'X', XSIZE(struct section_problem_data, style_checker_env), "style_checker_env", XOFFSET(struct section_problem_data, style_checker_env) },
   [CNTSPROB_test_checker_env] = { CNTSPROB_test_checker_env, 'X', XSIZE(struct section_problem_data, test_checker_env), "test_checker_env", XOFFSET(struct section_problem_data, test_checker_env) },
   [CNTSPROB_test_generator_env] = { CNTSPROB_test_generator_env, 'X', XSIZE(struct section_problem_data, test_generator_env), "test_generator_env", XOFFSET(struct section_problem_data, test_generator_env) },
@@ -1346,6 +1351,7 @@ static struct meta_info_item meta_info_section_problem_data_data[] =
   [CNTSPROB_check_cmd] = { CNTSPROB_check_cmd, 's', XSIZE(struct section_problem_data, check_cmd), "check_cmd", XOFFSET(struct section_problem_data, check_cmd) },
   [CNTSPROB_valuer_cmd] = { CNTSPROB_valuer_cmd, 's', XSIZE(struct section_problem_data, valuer_cmd), "valuer_cmd", XOFFSET(struct section_problem_data, valuer_cmd) },
   [CNTSPROB_interactor_cmd] = { CNTSPROB_interactor_cmd, 's', XSIZE(struct section_problem_data, interactor_cmd), "interactor_cmd", XOFFSET(struct section_problem_data, interactor_cmd) },
+  [CNTSPROB_channel_cmd] = { CNTSPROB_channel_cmd, 's', XSIZE(struct section_problem_data, channel_cmd), "channel_cmd", XOFFSET(struct section_problem_data, channel_cmd) },
   [CNTSPROB_style_checker_cmd] = { CNTSPROB_style_checker_cmd, 's', XSIZE(struct section_problem_data, style_checker_cmd), "style_checker_cmd", XOFFSET(struct section_problem_data, style_checker_cmd) },
   [CNTSPROB_test_checker_cmd] = { CNTSPROB_test_checker_cmd, 's', XSIZE(struct section_problem_data, test_checker_cmd), "test_checker_cmd", XOFFSET(struct section_problem_data, test_checker_cmd) },
   [CNTSPROB_test_generator_cmd] = { CNTSPROB_test_generator_cmd, 's', XSIZE(struct section_problem_data, test_generator_cmd), "test_generator_cmd", XOFFSET(struct section_problem_data, test_generator_cmd) },
@@ -1558,6 +1564,7 @@ void cntsprob_copy(struct section_problem_data *dst, const struct section_proble
   dst->score_multiplier = src->score_multiplier;
   dst->prev_runs_to_show = src->prev_runs_to_show;
   dst->max_user_run_count = src->max_user_run_count;
+  dst->communication = src->communication;
   if (src->long_name) {
     dst->long_name = strdup(src->long_name);
   }
@@ -1639,6 +1646,9 @@ void cntsprob_copy(struct section_problem_data *dst, const struct section_proble
   if (src->container_options) {
     dst->container_options = strdup(src->container_options);
   }
+  if (src->communication_flags) {
+    dst->communication_flags = strdup(src->communication_flags);
+  }
   // private token_info
   if (src->score_tests) {
     dst->score_tests = strdup(src->score_tests);
@@ -1672,6 +1682,8 @@ void cntsprob_copy(struct section_problem_data *dst, const struct section_proble
   }
   dst->interactor_time_limit = src->interactor_time_limit;
   dst->interactor_real_time_limit = src->interactor_real_time_limit;
+  dst->channel_time_limit = src->channel_time_limit;
+  dst->channel_real_time_limit = src->channel_real_time_limit;
   if (src->custom_compile_cmd) {
     dst->custom_compile_cmd = strdup(src->custom_compile_cmd);
   }
@@ -1734,6 +1746,7 @@ void cntsprob_copy(struct section_problem_data *dst, const struct section_proble
   dst->checker_env = (typeof(dst->checker_env)) sarray_copy((char**) src->checker_env);
   dst->valuer_env = (typeof(dst->valuer_env)) sarray_copy((char**) src->valuer_env);
   dst->interactor_env = (typeof(dst->interactor_env)) sarray_copy((char**) src->interactor_env);
+  dst->channel_env = (typeof(dst->channel_env)) sarray_copy((char**) src->channel_env);
   dst->style_checker_env = (typeof(dst->style_checker_env)) sarray_copy((char**) src->style_checker_env);
   dst->test_checker_env = (typeof(dst->test_checker_env)) sarray_copy((char**) src->test_checker_env);
   dst->test_generator_env = (typeof(dst->test_generator_env)) sarray_copy((char**) src->test_generator_env);
@@ -1747,6 +1760,9 @@ void cntsprob_copy(struct section_problem_data *dst, const struct section_proble
   }
   if (src->interactor_cmd) {
     dst->interactor_cmd = strdup(src->interactor_cmd);
+  }
+  if (src->channel_cmd) {
+    dst->channel_cmd = strdup(src->channel_cmd);
   }
   if (src->style_checker_cmd) {
     dst->style_checker_cmd = strdup(src->style_checker_cmd);
@@ -1871,6 +1887,7 @@ void cntsprob_free(struct section_problem_data *ptr)
   free(ptr->footer_pat);
   free(ptr->compiler_env_pat);
   free(ptr->container_options);
+  free(ptr->communication_flags);
   // private token_info
   free(ptr->score_tests);
   free(ptr->standard_checker);
@@ -1918,6 +1935,7 @@ void cntsprob_free(struct section_problem_data *ptr)
   sarray_free((char**) ptr->checker_env);
   sarray_free((char**) ptr->valuer_env);
   sarray_free((char**) ptr->interactor_env);
+  sarray_free((char**) ptr->channel_env);
   sarray_free((char**) ptr->style_checker_env);
   sarray_free((char**) ptr->test_checker_env);
   sarray_free((char**) ptr->test_generator_env);
@@ -1926,6 +1944,7 @@ void cntsprob_free(struct section_problem_data *ptr)
   free(ptr->check_cmd);
   free(ptr->valuer_cmd);
   free(ptr->interactor_cmd);
+  free(ptr->channel_cmd);
   free(ptr->style_checker_cmd);
   free(ptr->test_checker_cmd);
   free(ptr->test_generator_cmd);

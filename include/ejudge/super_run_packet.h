@@ -160,6 +160,8 @@ struct super_run_in_problem_packet
   unsigned char *standard_checker;
   unsigned char *standard_valuer;
   ejintbool_t valuer_sets_marked;
+  int channel_time_limit_ms;
+  int channel_real_time_limit_ms;
   int interactor_time_limit_ms;
   int interactor_real_time_limit_ms;
   ejintbool_t disable_stderr;
@@ -171,6 +173,7 @@ struct super_run_in_problem_packet
   char **test_sets;
   ejenvlist_t checker_env;
   ejenvlist_t valuer_env;
+  ejenvlist_t channel_env;
   ejenvlist_t interactor_env;
   ejenvlist_t test_checker_env;
   ejenvlist_t test_generator_env;
@@ -178,6 +181,7 @@ struct super_run_in_problem_packet
   ejenvlist_t start_env;
   unsigned char *check_cmd;
   unsigned char *valuer_cmd;
+  unsigned char *channel_cmd;
   unsigned char *interactor_cmd;
   unsigned char *test_checker_cmd;
   unsigned char *test_generator_cmd;
@@ -211,6 +215,8 @@ struct super_run_in_problem_packet
   ejintbool_t enable_group_merge;
   ejintbool_t ignore_sigpipe;
   int debug_flags;
+  int communication;
+  unsigned char *communication_flags;
 
   int type_val META_ATTRIB((meta_hidden));
 };

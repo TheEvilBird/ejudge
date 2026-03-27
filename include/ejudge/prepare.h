@@ -1073,6 +1073,8 @@ struct section_problem_data
   int prev_runs_to_show;
   /** limit for the number of submits for this problem for a user */
   int max_user_run_count;
+  /** number of runs of the problem */
+  int communication;
   /** long name of the problem */
   unsigned char *long_name;
   /** name for the standings column */
@@ -1127,6 +1129,8 @@ struct section_problem_data
   unsigned char *compiler_env_pat;
   /** options for container */
   unsigned char *container_options;
+  /** options for communication rus */
+  unsigned char *communication_flags;
 
   struct token_info *token_info META_ATTRIB((meta_private));
 
@@ -1154,6 +1158,10 @@ struct section_problem_data
   int interactor_time_limit;
   /** real time limit for the interactor */
   int interactor_real_time_limit;
+  /** time-limit for the interactor */
+  int channel_time_limit;
+  /** real time limit for the interactor */
+  int channel_real_time_limit;
   /** custom compilation command (if enable_custom language enabled) */
   unsigned char *custom_compile_cmd;
   /** custom language name (if enable_custom language enabled) */
@@ -1228,6 +1236,8 @@ struct section_problem_data
   ejenvlist_t valuer_env;
   /** environment variables for the problem interactor */
   ejenvlist_t interactor_env;
+  /** environment variables for the problem channel */
+  ejenvlist_t channel_env;
   /** environment variables for the style checker */
   ejenvlist_t style_checker_env;
   /** environment variables for the test checker */
@@ -1244,6 +1254,8 @@ struct section_problem_data
   unsigned char *valuer_cmd;
   /** interactor program */
   unsigned char *interactor_cmd;
+  /** channel program */
+  unsigned char *channel_cmd;
   /** style checker program */
   unsigned char *style_checker_cmd;
   /** test checker program */
@@ -1792,6 +1804,13 @@ prepare_parse_testsets(
         struct testset_info **p_info);
 void
 prepare_free_testsets(int t, struct testset_info *p);
+
+int
+prepare_parse_communication_flags(
+        FILE *log_f,
+        const unsigned char *communication_flags,
+        int **pflags,
+        int *pcount);
 
 void
 prepare_copy_dates(

@@ -1532,6 +1532,24 @@ prepare_unparse_prob(
       fprintf(f, "min_tests_to_accept = %d\n", prob->min_tests_to_accept);
     }
   }
+  if ((prob->abstract && prob->communication >= 2)
+    || (!prob->abstract && prob->communication >= 2)) {
+    fprintf(f, "communication = %d\n", prob->communication);
+
+    if (prob->communication_flags && prob->communication_flags[0]) {
+      fprintf(f, "communication_flags = \"%s\"\n", CARMOR(prob->communication_flags));
+    }
+
+    if (prob->channel_cmd && prob->channel_cmd[0])
+      fprintf(f,"channel_cmd = \"%s\"\n",CARMOR(prob->channel_cmd));
+    do_xstr(f, &ab, "channel_env", prob->channel_env);
+  }
+  if (prob->channel_time_limit > 0) {
+    fprintf(f, "channel_time_limit = %d\n", prob->channel_time_limit);
+  }
+  if (prob->channel_real_time_limit > 0) {
+    fprintf(f, "channel_real_time_limit = %d\n", prob->channel_real_time_limit);
+  }
   if (prob->standard_checker)
     fprintf(f, "standard_checker = \"%s\"\n", CARMOR(prob->standard_checker));
   if (prob->check_cmd && prob->check_cmd[0])
@@ -2041,6 +2059,22 @@ prepare_unparse_actual_prob(
   if (prob->tokens && prob->tokens[0])
     fprintf(f, "tokens = \"%s\"\n", CARMOR(prob->tokens));
 
+  if ((prob->abstract && prob->communication >= 2)
+    || (!prob->abstract && prob->communication >= 2)) {
+    fprintf(f, "communication = %d\n", prob->communication);
+
+    if (prob->communication_flags && prob->communication_flags[0]) {
+      fprintf(f, "communication_flags = \"%s\"\n", CARMOR(prob->communication_flags));
+    }
+
+    if (prob->channel_cmd && prob->channel_cmd[0])
+      fprintf(f,"channel_cmd = \"%s\"\n",CARMOR(prob->channel_cmd));
+    do_xstr(f, &ab, "channel_env", prob->channel_env);
+  }
+  if (prob->channel_time_limit > 0)
+    fprintf(f, "channel_time_limit = %d\n", prob->channel_time_limit);
+  if (prob->channel_real_time_limit > 0)
+    fprintf(f, "channel_real_time_limit = %d\n", prob->channel_real_time_limit);
   if (prob->standard_checker)
     fprintf(f, "standard_checker = \"%s\"\n", CARMOR(prob->standard_checker));
   if (!prob->standard_checker && (show_paths || (global && global->advanced_layout > 0)) && prob->check_cmd)
@@ -3336,6 +3370,12 @@ prob_instr(
   if (tmp_prob->interactor_cmd && tmp_prob->interactor_cmd[0]) {
     fprintf(f, "<p><b>Interactor:</b></p>\n");
     handle_file(f, global, tmp_prob, tmp_prob->interactor_cmd, 1);
+  }
+
+  prepare_set_prob_value(CNTSPROB_channel_cmd, tmp_prob, abstr, global);
+  if (tmp_prob->channel_cmd && tmp_prob->channel_cmd[0]) {
+    fprintf(f, "<p><b>Channel:</b></p>\n");
+    handle_file(f, global, tmp_prob, tmp_prob->channel_cmd, 1);
   }
 
   prepare_set_prob_value(CNTSPROB_style_checker_cmd, tmp_prob, abstr, global);

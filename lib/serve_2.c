@@ -2591,6 +2591,28 @@ serve_run_request(
   if (prob->interactor_real_time_limit > 0) {
     srpp->interactor_real_time_limit_ms = prob->interactor_real_time_limit * 1000;
   }
+  srpp->communication = prob->communication;
+  if (prob->communication >= 2) {
+    srpp->communication_flags = xstrdup2(prob->communication_flags);
+    if (prob->channel_time_limit > 0) {
+      srpp->channel_time_limit_ms = prob->channel_time_limit * 1000;
+    }
+    if (prob->channel_real_time_limit > 0) {
+      srpp->channel_real_time_limit_ms = prob->channel_real_time_limit * 1000;
+    }
+  }
+  if (prob->channel_cmd && prob->channel_cmd[0]) {
+    if (srgp->advanced_layout > 0) {
+      get_advanced_layout_path(pathbuf, sizeof(pathbuf), global, prob, prob->channel_cmd, variant);
+      srpp->channel_cmd = xstrdup(pathbuf);
+    } else if (variant > 0) {
+      snprintf(pathbuf, sizeof(pathbuf), "%s-%d", prob->channel_cmd, variant);
+      srpp->channel_cmd = xstrdup(pathbuf);
+    } else {
+      srpp->channel_cmd = xstrdup(prob->channel_cmd);
+    }
+  }
+  srpp->channel_env = sarray_copy(prob->channel_env);
   srpp->disable_stderr = prob->disable_stderr;
   if (prob->test_pat) {
     srpp->test_pat = xstrdup(prob->test_pat);

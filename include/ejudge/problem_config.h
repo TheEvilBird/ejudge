@@ -141,12 +141,15 @@ struct problem_config_section
   int score_multiplier;
   int prev_runs_to_show;
   int max_user_run_count;
+  int channel_time_limit;
+  int channel_real_time_limit;
   int interactor_time_limit;
   int interactor_real_time_limit;
   int max_open_file_count;
   int max_process_count;
   int forced_test_count;
   int debug_flags;
+  int communication;
 
   time_t deadline;
   time_t start_date;
@@ -213,6 +216,7 @@ struct problem_config_section
   unsigned char *check_cmd;
   unsigned char *valuer_cmd;
   unsigned char *interactor_cmd;
+  unsigned char *channel_cmd;
   unsigned char *style_checker_cmd;
   unsigned char *test_checker_cmd;
   unsigned char *test_generator_cmd;
@@ -230,6 +234,7 @@ struct problem_config_section
   unsigned char *src_normalization;
   unsigned char *score_bonus;
   unsigned char *super_run_dir;
+  unsigned char *communication_flags;
   unsigned char *revision;           // not in prepare.h
   unsigned char *iframe_statement;   // not in prepare.h
 
@@ -261,6 +266,7 @@ struct problem_config_section
   ejenvlist_t init_env;
   ejenvlist_t start_env;
   ejenvlist_t statement_env;
+  ejenvlist_t channel_env;
 };
 
 void

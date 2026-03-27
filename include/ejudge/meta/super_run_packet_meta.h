@@ -148,6 +148,8 @@ enum
   META_SUPER_RUN_IN_PROBLEM_PACKET_standard_checker,
   META_SUPER_RUN_IN_PROBLEM_PACKET_standard_valuer,
   META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_sets_marked,
+  META_SUPER_RUN_IN_PROBLEM_PACKET_channel_time_limit_ms,
+  META_SUPER_RUN_IN_PROBLEM_PACKET_channel_real_time_limit_ms,
   META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_time_limit_ms,
   META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_real_time_limit_ms,
   META_SUPER_RUN_IN_PROBLEM_PACKET_disable_stderr,
@@ -159,6 +161,7 @@ enum
   META_SUPER_RUN_IN_PROBLEM_PACKET_test_sets,
   META_SUPER_RUN_IN_PROBLEM_PACKET_checker_env,
   META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_env,
+  META_SUPER_RUN_IN_PROBLEM_PACKET_channel_env,
   META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_env,
   META_SUPER_RUN_IN_PROBLEM_PACKET_test_checker_env,
   META_SUPER_RUN_IN_PROBLEM_PACKET_test_generator_env,
@@ -166,6 +169,7 @@ enum
   META_SUPER_RUN_IN_PROBLEM_PACKET_start_env,
   META_SUPER_RUN_IN_PROBLEM_PACKET_check_cmd,
   META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_cmd,
+  META_SUPER_RUN_IN_PROBLEM_PACKET_channel_cmd,
   META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_cmd,
   META_SUPER_RUN_IN_PROBLEM_PACKET_test_checker_cmd,
   META_SUPER_RUN_IN_PROBLEM_PACKET_test_generator_cmd,
@@ -199,6 +203,8 @@ enum
   META_SUPER_RUN_IN_PROBLEM_PACKET_enable_group_merge,
   META_SUPER_RUN_IN_PROBLEM_PACKET_ignore_sigpipe,
   META_SUPER_RUN_IN_PROBLEM_PACKET_debug_flags,
+  META_SUPER_RUN_IN_PROBLEM_PACKET_communication,
+  META_SUPER_RUN_IN_PROBLEM_PACKET_communication_flags,
 
   META_SUPER_RUN_IN_PROBLEM_PACKET_LAST_FIELD,
 };

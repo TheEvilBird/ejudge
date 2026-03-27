@@ -1315,6 +1315,12 @@ static const int cnts_to_cfg_field_map[CNTSPROB_LAST_FIELD] =
   [CNTSPROB_var_xml_file_paths] = 0,
   [CNTSPROB_md_files] = 0,
   [CNTSPROB_md_size] = 0,
+  [CNTSPROB_communication] = META_PROBLEM_CONFIG_SECTION_communication,
+  [CNTSPROB_communication_flags] = META_PROBLEM_CONFIG_SECTION_communication_flags,
+  [CNTSPROB_channel_cmd] = META_PROBLEM_CONFIG_SECTION_channel_cmd,
+  [CNTSPROB_channel_env] = META_PROBLEM_CONFIG_SECTION_channel_env,
+  [CNTSPROB_channel_time_limit] = META_PROBLEM_CONFIG_SECTION_channel_time_limit,
+  [CNTSPROB_channel_real_time_limit] = META_PROBLEM_CONFIG_SECTION_channel_real_time_limit,
 };
 
 int

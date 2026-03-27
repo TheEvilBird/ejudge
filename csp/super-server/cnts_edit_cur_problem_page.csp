@@ -1847,6 +1847,146 @@ function viewDialogOnChange(field)
             <%@expand ORIG_INHERITABLE_BOOLEAN "valuer_sets_marked" "Checking" "Valuer sets <i>marked</i> flag" %>
             <%@expand ORIG_INHERITABLE_BOOLEAN "interactive_valuer" "Checking" "Valuer works interactively" %>
             <%@expand ORIG_ENV "valuer_env" "Checking" "Valuer environment" %>
+<%
+{
+%>
+            <s:tr attr="form_row_attrs[row ^= 1]" id="orig-communication-div">
+                <td>Communication run count:</td>
+                <td><s:textfield id="orig-communication" readonly="readonly" name="param" value="prob->communication" size="48" maxlength="1024" checkExpr=" >= 2" /><%
+    if (prob_id <= 0) {
+      if (prob->communication < 2) {
+%>(<i>Not set</i>)<%
+      }
+    } else {
+      if (prob->communication < 2) {
+        if (tmp_prob->communication < 2) {
+%>(<i>Not set</i>)<%
+        } else {
+%>(<i>Default: <s:v value="tmp_prob->communication" /></i>)<%
+        }
+      }
+    }
+%></td>
+                <td><input type="button" onclick="popupCheckingDialog(event, 'communication')" value="Clear" /></td>
+                <td onclick="np(event);"><s:help topic="Serve.cfg:problem:communication" /></td>
+            </s:tr>
+<%
+}
+%>
+
+<%
+{
+%>
+            <s:tr attr="form_row_attrs[row ^= 1]" id="orig-communication_flags-div">
+                <td>Communication flags:</td>
+                <td><%
+     const unsigned char *value = prob->communication_flags;
+%><s:textfield id="orig-communication_flags" readonly="readonly" name="param" value="value" size="48" maxlength="1024" checkExpr="" /><%
+     if (prob_id <= 0) {
+       if (!value || !value[0]) {
+%>(<i>Not set</i>)<%
+       }
+     } else {
+       if (!value || !value[0]) {
+         if (!tmp_prob->communication_flags || !tmp_prob->communication_flags[0]) {
+%>(<i>Not set</i>)<%
+         } else {
+%>(<i>Default: <s:v value="tmp_prob->communication_flags" /></i>)<%
+         }
+       }
+     }
+%></td>
+                <td><input type="button" onclick="popupCheckingDialog(event, 'communication_flags')" value="Clear" /></td>
+                <td onclick="np(event);"><s:help topic="Serve.cfg:problem:communication_flags" /></td>
+            </s:tr>
+<%
+}
+%>
+
+<%
+{
+%>
+            <s:tr attr="form_row_attrs[row ^= 1]" id="orig-channel_cmd-div">
+                <td>Channel command:</td>
+                <td><%
+    const unsigned char *value = prob->channel_cmd;
+%><s:textfield id="orig-channel_cmd" readonly="readonly" name="param" value="value" size="48" maxlength="1024" checkExpr="" /><%
+    if (prob_id <= 0) {
+      if (!value || !value[0]) {
+%>(<i>Not set</i>)<%
+      }
+    } else {
+      if (!value || !value[0]) {
+        if (!tmp_prob->channel_cmd || !tmp_prob->channel_cmd[0]) {
+%>(<i>Not set</i>)<%
+        } else {
+%>(<i>Default: <s:v value="tmp_prob->channel_cmd" /></i>)<%
+        }
+      }
+    }
+%></td>
+                <td><input type="button" onclick="popupCheckingDialog(event, 'channel_cmd')" value="Clear" /></td>
+                <td onclick="np(event);"><s:help topic="Serve.cfg:problem:channel_cmd" /></td>
+            </s:tr>
+<%
+}
+%>
+
+            <%@expand ORIG_ENV "channel_env" "Checking" "Channel environment" %>
+
+            <s:tr attr="form_row_attrs[row ^= 1]" id="orig-channel_time_limit-div">
+                <td>Time limit for channel (s):</td>
+                <td><s:textfield id="orig-channel_time_limit" readonly="readonly" name="param" value="prob->channel_time_limit" size="48" maxlength="1024" checkExpr=" >= 0" /><%
+    if (prob_id <= 0 || !sup_prob) {
+      if (prob->channel_time_limit < 0) {
+%>(<i>Not set</i>)<%
+      } else if (!prob->channel_time_limit) {
+%>(<i>Unlimited</i>)<%
+      }
+    } else {
+      if (prob->channel_time_limit < 0) {
+        if (tmp_prob->channel_time_limit < 0) {
+%>(<i>Not set</i>)<%
+        } else if (!tmp_prob->channel_time_limit) {
+%>(<i>Default: unlimited</i>)<%
+        } else {
+%>(<i>Default: <s:v value="tmp_prob->channel_time_limit" /></i>)<%
+        }
+      } else if (!prob->channel_time_limit) {
+%>(<i>Unlimited</i>)<%
+      }
+    }
+%></td>
+                <td>&nbsp;</td>
+                <td onclick="np(event);"><s:help topic="Serve.cfg:problem:channel_time_limit" /></td>
+            </s:tr>
+
+            <s:tr attr="form_row_attrs[row ^= 1]" id="orig-channel_real_time_limit-div">
+                <td>Real time limit for channel (s):</td>
+                <td><s:textfield id="orig-channel_real_time_limit" readonly="readonly" name="param" value="prob->channel_real_time_limit" size="48" maxlength="1024" checkExpr=" >= 0" /><%
+    if (prob_id <= 0 || !sup_prob) {
+      if (prob->channel_real_time_limit < 0) {
+%>(<i>Not set</i>)<%
+      } else if (!prob->channel_real_time_limit) {
+%>(<i>Unlimited</i>)<%
+      }
+    } else {
+      if (prob->channel_real_time_limit < 0) {
+        if (tmp_prob->channel_real_time_limit < 0) {
+%>(<i>Not set</i>)<%
+        } else if (!tmp_prob->channel_real_time_limit) {
+%>(<i>Default: unlimited</i>)<%
+        } else {
+%>(<i>Default: <s:v value="tmp_prob->channel_real_time_limit" /></i>)<%
+        }
+      } else if (!prob->channel_real_time_limit) {
+%>(<i>Unlimited</i>)<%
+      }
+    }
+%></td>
+                <td>&nbsp;</td>
+                <td onclick="np(event);"><s:help topic="Serve.cfg:problem:channel_real_time_limit" /></td>
+            </s:tr>
 
 <%
   {

@@ -119,12 +119,15 @@ static struct meta_info_item meta_info_problem_config_section_data[] =
   [META_PROBLEM_CONFIG_SECTION_score_multiplier] = { META_PROBLEM_CONFIG_SECTION_score_multiplier, 'i', XSIZE(struct problem_config_section, score_multiplier), "score_multiplier", XOFFSET(struct problem_config_section, score_multiplier) },
   [META_PROBLEM_CONFIG_SECTION_prev_runs_to_show] = { META_PROBLEM_CONFIG_SECTION_prev_runs_to_show, 'i', XSIZE(struct problem_config_section, prev_runs_to_show), "prev_runs_to_show", XOFFSET(struct problem_config_section, prev_runs_to_show) },
   [META_PROBLEM_CONFIG_SECTION_max_user_run_count] = { META_PROBLEM_CONFIG_SECTION_max_user_run_count, 'i', XSIZE(struct problem_config_section, max_user_run_count), "max_user_run_count", XOFFSET(struct problem_config_section, max_user_run_count) },
+  [META_PROBLEM_CONFIG_SECTION_channel_time_limit] = { META_PROBLEM_CONFIG_SECTION_channel_time_limit, 'i', XSIZE(struct problem_config_section, channel_time_limit), "channel_time_limit", XOFFSET(struct problem_config_section, channel_time_limit) },
+  [META_PROBLEM_CONFIG_SECTION_channel_real_time_limit] = { META_PROBLEM_CONFIG_SECTION_channel_real_time_limit, 'i', XSIZE(struct problem_config_section, channel_real_time_limit), "channel_real_time_limit", XOFFSET(struct problem_config_section, channel_real_time_limit) },
   [META_PROBLEM_CONFIG_SECTION_interactor_time_limit] = { META_PROBLEM_CONFIG_SECTION_interactor_time_limit, 'i', XSIZE(struct problem_config_section, interactor_time_limit), "interactor_time_limit", XOFFSET(struct problem_config_section, interactor_time_limit) },
   [META_PROBLEM_CONFIG_SECTION_interactor_real_time_limit] = { META_PROBLEM_CONFIG_SECTION_interactor_real_time_limit, 'i', XSIZE(struct problem_config_section, interactor_real_time_limit), "interactor_real_time_limit", XOFFSET(struct problem_config_section, interactor_real_time_limit) },
   [META_PROBLEM_CONFIG_SECTION_max_open_file_count] = { META_PROBLEM_CONFIG_SECTION_max_open_file_count, 'i', XSIZE(struct problem_config_section, max_open_file_count), "max_open_file_count", XOFFSET(struct problem_config_section, max_open_file_count) },
   [META_PROBLEM_CONFIG_SECTION_max_process_count] = { META_PROBLEM_CONFIG_SECTION_max_process_count, 'i', XSIZE(struct problem_config_section, max_process_count), "max_process_count", XOFFSET(struct problem_config_section, max_process_count) },
   [META_PROBLEM_CONFIG_SECTION_forced_test_count] = { META_PROBLEM_CONFIG_SECTION_forced_test_count, 'i', XSIZE(struct problem_config_section, forced_test_count), "forced_test_count", XOFFSET(struct problem_config_section, forced_test_count) },
   [META_PROBLEM_CONFIG_SECTION_debug_flags] = { META_PROBLEM_CONFIG_SECTION_debug_flags, 'i', XSIZE(struct problem_config_section, debug_flags), "debug_flags", XOFFSET(struct problem_config_section, debug_flags) },
+  [META_PROBLEM_CONFIG_SECTION_communication] = { META_PROBLEM_CONFIG_SECTION_communication, 'i', XSIZE(struct problem_config_section, communication), "communication", XOFFSET(struct problem_config_section, communication) },
   [META_PROBLEM_CONFIG_SECTION_deadline] = { META_PROBLEM_CONFIG_SECTION_deadline, 't', XSIZE(struct problem_config_section, deadline), "deadline", XOFFSET(struct problem_config_section, deadline) },
   [META_PROBLEM_CONFIG_SECTION_start_date] = { META_PROBLEM_CONFIG_SECTION_start_date, 't', XSIZE(struct problem_config_section, start_date), "start_date", XOFFSET(struct problem_config_section, start_date) },
   [META_PROBLEM_CONFIG_SECTION_max_vm_size] = { META_PROBLEM_CONFIG_SECTION_max_vm_size, 'E', XSIZE(struct problem_config_section, max_vm_size), "max_vm_size", XOFFSET(struct problem_config_section, max_vm_size) },
@@ -187,6 +190,7 @@ static struct meta_info_item meta_info_problem_config_section_data[] =
   [META_PROBLEM_CONFIG_SECTION_check_cmd] = { META_PROBLEM_CONFIG_SECTION_check_cmd, 's', XSIZE(struct problem_config_section, check_cmd), "check_cmd", XOFFSET(struct problem_config_section, check_cmd) },
   [META_PROBLEM_CONFIG_SECTION_valuer_cmd] = { META_PROBLEM_CONFIG_SECTION_valuer_cmd, 's', XSIZE(struct problem_config_section, valuer_cmd), "valuer_cmd", XOFFSET(struct problem_config_section, valuer_cmd) },
   [META_PROBLEM_CONFIG_SECTION_interactor_cmd] = { META_PROBLEM_CONFIG_SECTION_interactor_cmd, 's', XSIZE(struct problem_config_section, interactor_cmd), "interactor_cmd", XOFFSET(struct problem_config_section, interactor_cmd) },
+  [META_PROBLEM_CONFIG_SECTION_channel_cmd] = { META_PROBLEM_CONFIG_SECTION_channel_cmd, 's', XSIZE(struct problem_config_section, channel_cmd), "channel_cmd", XOFFSET(struct problem_config_section, channel_cmd) },
   [META_PROBLEM_CONFIG_SECTION_style_checker_cmd] = { META_PROBLEM_CONFIG_SECTION_style_checker_cmd, 's', XSIZE(struct problem_config_section, style_checker_cmd), "style_checker_cmd", XOFFSET(struct problem_config_section, style_checker_cmd) },
   [META_PROBLEM_CONFIG_SECTION_test_checker_cmd] = { META_PROBLEM_CONFIG_SECTION_test_checker_cmd, 's', XSIZE(struct problem_config_section, test_checker_cmd), "test_checker_cmd", XOFFSET(struct problem_config_section, test_checker_cmd) },
   [META_PROBLEM_CONFIG_SECTION_test_generator_cmd] = { META_PROBLEM_CONFIG_SECTION_test_generator_cmd, 's', XSIZE(struct problem_config_section, test_generator_cmd), "test_generator_cmd", XOFFSET(struct problem_config_section, test_generator_cmd) },
@@ -204,6 +208,7 @@ static struct meta_info_item meta_info_problem_config_section_data[] =
   [META_PROBLEM_CONFIG_SECTION_src_normalization] = { META_PROBLEM_CONFIG_SECTION_src_normalization, 's', XSIZE(struct problem_config_section, src_normalization), "src_normalization", XOFFSET(struct problem_config_section, src_normalization) },
   [META_PROBLEM_CONFIG_SECTION_score_bonus] = { META_PROBLEM_CONFIG_SECTION_score_bonus, 's', XSIZE(struct problem_config_section, score_bonus), "score_bonus", XOFFSET(struct problem_config_section, score_bonus) },
   [META_PROBLEM_CONFIG_SECTION_super_run_dir] = { META_PROBLEM_CONFIG_SECTION_super_run_dir, 's', XSIZE(struct problem_config_section, super_run_dir), "super_run_dir", XOFFSET(struct problem_config_section, super_run_dir) },
+  [META_PROBLEM_CONFIG_SECTION_communication_flags] = { META_PROBLEM_CONFIG_SECTION_communication_flags, 's', XSIZE(struct problem_config_section, communication_flags), "communication_flags", XOFFSET(struct problem_config_section, communication_flags) },
   [META_PROBLEM_CONFIG_SECTION_revision] = { META_PROBLEM_CONFIG_SECTION_revision, 's', XSIZE(struct problem_config_section, revision), "revision", XOFFSET(struct problem_config_section, revision) },
   [META_PROBLEM_CONFIG_SECTION_iframe_statement] = { META_PROBLEM_CONFIG_SECTION_iframe_statement, 's', XSIZE(struct problem_config_section, iframe_statement), "iframe_statement", XOFFSET(struct problem_config_section, iframe_statement) },
   [META_PROBLEM_CONFIG_SECTION_test_sets] = { META_PROBLEM_CONFIG_SECTION_test_sets, 'x', XSIZE(struct problem_config_section, test_sets), "test_sets", XOFFSET(struct problem_config_section, test_sets) },
@@ -233,6 +238,7 @@ static struct meta_info_item meta_info_problem_config_section_data[] =
   [META_PROBLEM_CONFIG_SECTION_init_env] = { META_PROBLEM_CONFIG_SECTION_init_env, 'X', XSIZE(struct problem_config_section, init_env), "init_env", XOFFSET(struct problem_config_section, init_env) },
   [META_PROBLEM_CONFIG_SECTION_start_env] = { META_PROBLEM_CONFIG_SECTION_start_env, 'X', XSIZE(struct problem_config_section, start_env), "start_env", XOFFSET(struct problem_config_section, start_env) },
   [META_PROBLEM_CONFIG_SECTION_statement_env] = { META_PROBLEM_CONFIG_SECTION_statement_env, 'X', XSIZE(struct problem_config_section, statement_env), "statement_env", XOFFSET(struct problem_config_section, statement_env) },
+  [META_PROBLEM_CONFIG_SECTION_channel_env] = { META_PROBLEM_CONFIG_SECTION_channel_env, 'X', XSIZE(struct problem_config_section, channel_env), "channel_env", XOFFSET(struct problem_config_section, channel_env) },
 };
 
 int meta_problem_config_section_get_type(int tag)
@@ -381,12 +387,15 @@ void meta_problem_config_section_copy(struct problem_config_section *dst, const 
   dst->score_multiplier = src->score_multiplier;
   dst->prev_runs_to_show = src->prev_runs_to_show;
   dst->max_user_run_count = src->max_user_run_count;
+  dst->channel_time_limit = src->channel_time_limit;
+  dst->channel_real_time_limit = src->channel_real_time_limit;
   dst->interactor_time_limit = src->interactor_time_limit;
   dst->interactor_real_time_limit = src->interactor_real_time_limit;
   dst->max_open_file_count = src->max_open_file_count;
   dst->max_process_count = src->max_process_count;
   dst->forced_test_count = src->forced_test_count;
   dst->debug_flags = src->debug_flags;
+  dst->communication = src->communication;
   dst->deadline = src->deadline;
   dst->start_date = src->start_date;
   dst->max_vm_size = src->max_vm_size;
@@ -551,6 +560,9 @@ void meta_problem_config_section_copy(struct problem_config_section *dst, const 
   if (src->interactor_cmd) {
     dst->interactor_cmd = strdup(src->interactor_cmd);
   }
+  if (src->channel_cmd) {
+    dst->channel_cmd = strdup(src->channel_cmd);
+  }
   if (src->style_checker_cmd) {
     dst->style_checker_cmd = strdup(src->style_checker_cmd);
   }
@@ -602,6 +614,9 @@ void meta_problem_config_section_copy(struct problem_config_section *dst, const 
   if (src->super_run_dir) {
     dst->super_run_dir = strdup(src->super_run_dir);
   }
+  if (src->communication_flags) {
+    dst->communication_flags = strdup(src->communication_flags);
+  }
   if (src->revision) {
     dst->revision = strdup(src->revision);
   }
@@ -635,6 +650,7 @@ void meta_problem_config_section_copy(struct problem_config_section *dst, const 
   dst->init_env = (typeof(dst->init_env)) sarray_copy((char**) src->init_env);
   dst->start_env = (typeof(dst->start_env)) sarray_copy((char**) src->start_env);
   dst->statement_env = (typeof(dst->statement_env)) sarray_copy((char**) src->statement_env);
+  dst->channel_env = (typeof(dst->channel_env)) sarray_copy((char**) src->channel_env);
 }
 
 void meta_problem_config_section_free(struct problem_config_section *ptr)
@@ -691,6 +707,7 @@ void meta_problem_config_section_free(struct problem_config_section *ptr)
   free(ptr->check_cmd);
   free(ptr->valuer_cmd);
   free(ptr->interactor_cmd);
+  free(ptr->channel_cmd);
   free(ptr->style_checker_cmd);
   free(ptr->test_checker_cmd);
   free(ptr->test_generator_cmd);
@@ -708,6 +725,7 @@ void meta_problem_config_section_free(struct problem_config_section *ptr)
   free(ptr->src_normalization);
   free(ptr->score_bonus);
   free(ptr->super_run_dir);
+  free(ptr->communication_flags);
   free(ptr->revision);
   free(ptr->iframe_statement);
   sarray_free((char**) ptr->test_sets);
@@ -737,6 +755,7 @@ void meta_problem_config_section_free(struct problem_config_section *ptr)
   sarray_free((char**) ptr->init_env);
   sarray_free((char**) ptr->start_env);
   sarray_free((char**) ptr->statement_env);
+  sarray_free((char**) ptr->channel_env);
 }
 
 const struct meta_methods meta_problem_config_section_methods =

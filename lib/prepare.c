@@ -499,6 +499,8 @@ static const struct config_parse_info section_problem_params[] =
   PROBLEM_PARAM(max_open_file_count, "d"),
   PROBLEM_PARAM(max_process_count, "d"),
   PROBLEM_PARAM_2(type, do_problem_parse_type),
+  PROBLEM_PARAM(channel_time_limit, "d"),
+  PROBLEM_PARAM(channel_real_time_limit, "d"),
   PROBLEM_PARAM(interactor_time_limit, "d"),
   PROBLEM_PARAM(interactor_real_time_limit, "d"),
   PROBLEM_PARAM(checker_max_vm_size, "E"),
@@ -506,6 +508,7 @@ static const struct config_parse_info section_problem_params[] =
   PROBLEM_PARAM(checker_max_rss_size, "E"),
   PROBLEM_PARAM(forced_test_count, "d"),
   PROBLEM_PARAM(debug_flags, "d"),
+  PROBLEM_PARAM(communication, "d"),
 
   PROBLEM_PARAM(super, "s"),
   PROBLEM_PARAM(short_name, "s"),
@@ -562,6 +565,8 @@ static const struct config_parse_info section_problem_params[] =
   PROBLEM_PARAM(check_cmd, "S"),
   PROBLEM_PARAM(valuer_cmd, "S"),
   PROBLEM_PARAM(interactor_cmd, "S"),
+  PROBLEM_PARAM(channel_cmd, "S"),
+  PROBLEM_PARAM(channel_env, "x"),
   PROBLEM_PARAM(style_checker_cmd, "S"),
   PROBLEM_PARAM(test_checker_cmd, "S"),
   PROBLEM_PARAM(test_generator_cmd, "S"),
@@ -607,6 +612,7 @@ static const struct config_parse_info section_problem_params[] =
   PROBLEM_PARAM(extra_src_dir, "S"),
   PROBLEM_PARAM(standard_valuer, "S"),
   PROBLEM_PARAM(md_file, "S"),
+  PROBLEM_PARAM(communication_flags, "S"),
 
   { 0, 0, 0, 0 }
 };
@@ -1350,6 +1356,8 @@ prepare_problem_init_func(struct generic_section_config *gp)
   p->max_file_size = -1LL;
   p->max_open_file_count = -1;
   p->max_process_count = -1;
+  p->channel_time_limit = -1;
+  p->channel_real_time_limit = -1;
   p->interactor_time_limit = -1;
   p->interactor_real_time_limit = -1;
   p->max_user_run_count = -1;
@@ -1359,6 +1367,7 @@ prepare_problem_init_func(struct generic_section_config *gp)
   p->normalization_val = -1;
   p->forced_test_count = -1;
   p->debug_flags = -1;
+  p->communication = -1;
 }
 
 void prepare_free_testsets(int t, struct testset_info *p);
@@ -2731,6 +2740,8 @@ prepare_problem(
   prepare_set_prob_value(CNTSPROB_time_limit, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_time_limit_millis, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_real_time_limit, prob, aprob, g);
+  prepare_set_prob_value(CNTSPROB_channel_time_limit, prob, aprob, g);
+  prepare_set_prob_value(CNTSPROB_channel_real_time_limit, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_interactor_time_limit, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_interactor_real_time_limit, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_test_sfx, prob, aprob, g);
@@ -2782,6 +2793,9 @@ prepare_problem(
   prepare_set_prob_value(CNTSPROB_use_tgz, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_forced_test_count, prob, aprob, g);
   prepare_set_prob_value(CNTSPROB_debug_flags, prob, aprob, g);
+  prepare_set_prob_value(CNTSPROB_communication, prob, aprob, g);
+  prepare_set_prob_value(CNTSPROB_communication_flags, prob, aprob, g);
+  prepare_set_prob_value(CNTSPROB_channel_cmd, prob, aprob, g);
 
   if (!prob->md_file && aprob && aprob->md_file) {
     sformat_message_2(&prob->md_file, 0, aprob->md_file, 0, prob, 0, 0, 0, 0, 0, 0);
@@ -2936,6 +2950,22 @@ prepare_problem(
                                               section_tester_params, g, prob,
                                               NULL, NULL);
       if (!prob->interactor_env[j]) return -1;
+    }
+  }
+
+  if (aprob && aprob->channel_env) {
+    prob->channel_env = sarray_merge_pf(aprob->channel_env,
+                                           prob->channel_env);
+  }
+  if (prob->channel_env) {
+    for (int j = 0; prob->channel_env[j]; ++j) {
+      prob->channel_env[j] = varsubst_heap(prob->channel_env[j], 1,
+                                              section_global_params,
+                                              section_problem_params,
+                                              section_language_params,
+                                              section_tester_params, g, prob,
+                                              NULL, NULL);
+      if (!prob->channel_env[j]) return -1;
     }
   }
 
@@ -6052,6 +6082,16 @@ prepare_set_prob_value(
     if (out->real_time_limit < 0) out->real_time_limit = 0;
     break;
 
+  case CNTSPROB_channel_time_limit:
+    if (out->channel_time_limit < 0 && abstr) out->channel_time_limit = abstr->channel_time_limit;
+    if (out->channel_time_limit < 0) out->channel_time_limit = 0;
+    break;
+
+    case CNTSPROB_channel_real_time_limit:
+      if (out->channel_real_time_limit < 0 && abstr) out->channel_real_time_limit = abstr->channel_real_time_limit;
+      if (out->channel_real_time_limit < 0) out->channel_real_time_limit = 0;
+      break;
+
   case CNTSPROB_interactor_time_limit:
     if (out->interactor_time_limit < 0 && abstr) out->interactor_time_limit = abstr->interactor_time_limit;
     if (out->interactor_time_limit < 0) out->interactor_time_limit = 0;
@@ -6268,6 +6308,18 @@ prepare_set_prob_value(
 
   case CNTSPROB_checker_max_rss_size:
     if (out->checker_max_rss_size < 0 && abstr) out->checker_max_rss_size = abstr->checker_max_rss_size;
+    break;
+
+  case CNTSPROB_communication:
+    if (out->communication < 0 && abstr) out->communication = abstr->communication;
+    break;
+
+  case CNTSPROB_communication_flags:
+    if ((!out->communication_flags || !out->communication_flags[0]) &&
+        abstr && abstr->communication_flags && abstr->communication_flags[0]) {
+      sformat_message_2(&out->communication_flags, 0, abstr->communication_flags,
+                        NULL, out, NULL, NULL, NULL, 0, 0, 0);
+        }
     break;
 
   case CNTSPROB_input_file:
@@ -6495,6 +6547,17 @@ prepare_set_prob_value(
     if (global && out->interactor_cmd && out->interactor_cmd[0] && global->advanced_layout <= 0) {
       if (!os_IsAbsolutePath(out->interactor_cmd)) {
         usprintf(&out->interactor_cmd, "%s/%s", global->checker_dir, out->interactor_cmd);
+      }
+    }
+    break;
+
+  case CNTSPROB_channel_cmd:
+    if ((!out->channel_cmd || !out->channel_cmd[0]) && abstr && abstr->channel_cmd && abstr->channel_cmd[0]) {
+      sformat_message_2(&out->channel_cmd, 0, abstr->channel_cmd, NULL, out, NULL, NULL, NULL, 0, 0, 0);
+    }
+    if (global && out->channel_cmd && out->channel_cmd[0] && global->advanced_layout <= 0) {
+      if (!os_IsAbsolutePath(out->channel_cmd)) {
+        usprintf(&out->channel_cmd, "%s/%s", global->checker_dir, out->channel_cmd);
       }
     }
     break;
@@ -6837,6 +6900,8 @@ prepare_set_all_prob_values(
     CNTSPROB_source_footer,
     CNTSPROB_valuer_sets_marked,
     CNTSPROB_ignore_unmarked,
+    CNTSPROB_channel_time_limit,
+    CNTSPROB_channel_real_time_limit,
     CNTSPROB_interactor_time_limit,
     CNTSPROB_interactor_real_time_limit,
     CNTSPROB_disable_stderr,
@@ -6922,6 +6987,10 @@ prepare_set_all_prob_values(
     //CNTSPROB_extid,
     //CNTSPROB_score_view,
     //CNTSPROB_score_view_text,
+    CNTSPROB_communication,
+    CNTSPROB_communication_flags,
+    CNTSPROB_channel_cmd,
+    // CNTSPROB_channel_env,
     0
   };
 
@@ -7136,6 +7205,16 @@ fail:
   }
   xfree(arr);
   return -1;
+}
+
+int
+prepare_parse_communication_flags(
+        FILE *log_f,
+        const unsigned char *communication_flags,
+        int **pflags,
+        int *pcount)
+{
+  return prepare_parse_test_score_list(log_f, communication_flags, pflags, pcount);
 }
 
 unsigned char *

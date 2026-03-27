@@ -345,6 +345,8 @@ static struct meta_info_item meta_info_super_run_in_problem_packet_data[] =
   [META_SUPER_RUN_IN_PROBLEM_PACKET_standard_checker] = { META_SUPER_RUN_IN_PROBLEM_PACKET_standard_checker, 's', XSIZE(struct super_run_in_problem_packet, standard_checker), "standard_checker", XOFFSET(struct super_run_in_problem_packet, standard_checker) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_standard_valuer] = { META_SUPER_RUN_IN_PROBLEM_PACKET_standard_valuer, 's', XSIZE(struct super_run_in_problem_packet, standard_valuer), "standard_valuer", XOFFSET(struct super_run_in_problem_packet, standard_valuer) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_sets_marked] = { META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_sets_marked, 'B', XSIZE(struct super_run_in_problem_packet, valuer_sets_marked), "valuer_sets_marked", XOFFSET(struct super_run_in_problem_packet, valuer_sets_marked) },
+  [META_SUPER_RUN_IN_PROBLEM_PACKET_channel_time_limit_ms] = { META_SUPER_RUN_IN_PROBLEM_PACKET_channel_time_limit_ms, 'i', XSIZE(struct super_run_in_problem_packet, channel_time_limit_ms), "channel_time_limit_ms", XOFFSET(struct super_run_in_problem_packet, channel_time_limit_ms) },
+  [META_SUPER_RUN_IN_PROBLEM_PACKET_channel_real_time_limit_ms] = { META_SUPER_RUN_IN_PROBLEM_PACKET_channel_real_time_limit_ms, 'i', XSIZE(struct super_run_in_problem_packet, channel_real_time_limit_ms), "channel_real_time_limit_ms", XOFFSET(struct super_run_in_problem_packet, channel_real_time_limit_ms) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_time_limit_ms] = { META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_time_limit_ms, 'i', XSIZE(struct super_run_in_problem_packet, interactor_time_limit_ms), "interactor_time_limit_ms", XOFFSET(struct super_run_in_problem_packet, interactor_time_limit_ms) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_real_time_limit_ms] = { META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_real_time_limit_ms, 'i', XSIZE(struct super_run_in_problem_packet, interactor_real_time_limit_ms), "interactor_real_time_limit_ms", XOFFSET(struct super_run_in_problem_packet, interactor_real_time_limit_ms) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_disable_stderr] = { META_SUPER_RUN_IN_PROBLEM_PACKET_disable_stderr, 'B', XSIZE(struct super_run_in_problem_packet, disable_stderr), "disable_stderr", XOFFSET(struct super_run_in_problem_packet, disable_stderr) },
@@ -356,6 +358,7 @@ static struct meta_info_item meta_info_super_run_in_problem_packet_data[] =
   [META_SUPER_RUN_IN_PROBLEM_PACKET_test_sets] = { META_SUPER_RUN_IN_PROBLEM_PACKET_test_sets, 'x', XSIZE(struct super_run_in_problem_packet, test_sets), "test_sets", XOFFSET(struct super_run_in_problem_packet, test_sets) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_checker_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_checker_env, 'X', XSIZE(struct super_run_in_problem_packet, checker_env), "checker_env", XOFFSET(struct super_run_in_problem_packet, checker_env) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_env, 'X', XSIZE(struct super_run_in_problem_packet, valuer_env), "valuer_env", XOFFSET(struct super_run_in_problem_packet, valuer_env) },
+  [META_SUPER_RUN_IN_PROBLEM_PACKET_channel_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_channel_env, 'X', XSIZE(struct super_run_in_problem_packet, channel_env), "channel_env", XOFFSET(struct super_run_in_problem_packet, channel_env) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_env, 'X', XSIZE(struct super_run_in_problem_packet, interactor_env), "interactor_env", XOFFSET(struct super_run_in_problem_packet, interactor_env) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_test_checker_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_test_checker_env, 'X', XSIZE(struct super_run_in_problem_packet, test_checker_env), "test_checker_env", XOFFSET(struct super_run_in_problem_packet, test_checker_env) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_test_generator_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_test_generator_env, 'X', XSIZE(struct super_run_in_problem_packet, test_generator_env), "test_generator_env", XOFFSET(struct super_run_in_problem_packet, test_generator_env) },
@@ -363,6 +366,7 @@ static struct meta_info_item meta_info_super_run_in_problem_packet_data[] =
   [META_SUPER_RUN_IN_PROBLEM_PACKET_start_env] = { META_SUPER_RUN_IN_PROBLEM_PACKET_start_env, 'X', XSIZE(struct super_run_in_problem_packet, start_env), "start_env", XOFFSET(struct super_run_in_problem_packet, start_env) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_check_cmd] = { META_SUPER_RUN_IN_PROBLEM_PACKET_check_cmd, 's', XSIZE(struct super_run_in_problem_packet, check_cmd), "check_cmd", XOFFSET(struct super_run_in_problem_packet, check_cmd) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_cmd] = { META_SUPER_RUN_IN_PROBLEM_PACKET_valuer_cmd, 's', XSIZE(struct super_run_in_problem_packet, valuer_cmd), "valuer_cmd", XOFFSET(struct super_run_in_problem_packet, valuer_cmd) },
+  [META_SUPER_RUN_IN_PROBLEM_PACKET_channel_cmd] = { META_SUPER_RUN_IN_PROBLEM_PACKET_channel_cmd, 's', XSIZE(struct super_run_in_problem_packet, channel_cmd), "channel_cmd", XOFFSET(struct super_run_in_problem_packet, channel_cmd) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_cmd] = { META_SUPER_RUN_IN_PROBLEM_PACKET_interactor_cmd, 's', XSIZE(struct super_run_in_problem_packet, interactor_cmd), "interactor_cmd", XOFFSET(struct super_run_in_problem_packet, interactor_cmd) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_test_checker_cmd] = { META_SUPER_RUN_IN_PROBLEM_PACKET_test_checker_cmd, 's', XSIZE(struct super_run_in_problem_packet, test_checker_cmd), "test_checker_cmd", XOFFSET(struct super_run_in_problem_packet, test_checker_cmd) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_test_generator_cmd] = { META_SUPER_RUN_IN_PROBLEM_PACKET_test_generator_cmd, 's', XSIZE(struct super_run_in_problem_packet, test_generator_cmd), "test_generator_cmd", XOFFSET(struct super_run_in_problem_packet, test_generator_cmd) },
@@ -396,6 +400,8 @@ static struct meta_info_item meta_info_super_run_in_problem_packet_data[] =
   [META_SUPER_RUN_IN_PROBLEM_PACKET_enable_group_merge] = { META_SUPER_RUN_IN_PROBLEM_PACKET_enable_group_merge, 'B', XSIZE(struct super_run_in_problem_packet, enable_group_merge), "enable_group_merge", XOFFSET(struct super_run_in_problem_packet, enable_group_merge) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_ignore_sigpipe] = { META_SUPER_RUN_IN_PROBLEM_PACKET_ignore_sigpipe, 'B', XSIZE(struct super_run_in_problem_packet, ignore_sigpipe), "ignore_sigpipe", XOFFSET(struct super_run_in_problem_packet, ignore_sigpipe) },
   [META_SUPER_RUN_IN_PROBLEM_PACKET_debug_flags] = { META_SUPER_RUN_IN_PROBLEM_PACKET_debug_flags, 'i', XSIZE(struct super_run_in_problem_packet, debug_flags), "debug_flags", XOFFSET(struct super_run_in_problem_packet, debug_flags) },
+  [META_SUPER_RUN_IN_PROBLEM_PACKET_communication] = { META_SUPER_RUN_IN_PROBLEM_PACKET_communication, 'i', XSIZE(struct super_run_in_problem_packet, communication), "communication", XOFFSET(struct super_run_in_problem_packet, communication) },
+  [META_SUPER_RUN_IN_PROBLEM_PACKET_communication_flags] = { META_SUPER_RUN_IN_PROBLEM_PACKET_communication_flags, 's', XSIZE(struct super_run_in_problem_packet, communication_flags), "communication_flags", XOFFSET(struct super_run_in_problem_packet, communication_flags) },
 };
 
 int meta_super_run_in_problem_packet_get_type(int tag)
@@ -519,6 +525,8 @@ void meta_super_run_in_problem_packet_copy(struct super_run_in_problem_packet *d
     dst->standard_valuer = strdup(src->standard_valuer);
   }
   dst->valuer_sets_marked = src->valuer_sets_marked;
+  dst->channel_time_limit_ms = src->channel_time_limit_ms;
+  dst->channel_real_time_limit_ms = src->channel_real_time_limit_ms;
   dst->interactor_time_limit_ms = src->interactor_time_limit_ms;
   dst->interactor_real_time_limit_ms = src->interactor_real_time_limit_ms;
   dst->disable_stderr = src->disable_stderr;
@@ -540,6 +548,7 @@ void meta_super_run_in_problem_packet_copy(struct super_run_in_problem_packet *d
   dst->test_sets = (typeof(dst->test_sets)) sarray_copy((char**) src->test_sets);
   dst->checker_env = (typeof(dst->checker_env)) sarray_copy((char**) src->checker_env);
   dst->valuer_env = (typeof(dst->valuer_env)) sarray_copy((char**) src->valuer_env);
+  dst->channel_env = (typeof(dst->channel_env)) sarray_copy((char**) src->channel_env);
   dst->interactor_env = (typeof(dst->interactor_env)) sarray_copy((char**) src->interactor_env);
   dst->test_checker_env = (typeof(dst->test_checker_env)) sarray_copy((char**) src->test_checker_env);
   dst->test_generator_env = (typeof(dst->test_generator_env)) sarray_copy((char**) src->test_generator_env);
@@ -550,6 +559,9 @@ void meta_super_run_in_problem_packet_copy(struct super_run_in_problem_packet *d
   }
   if (src->valuer_cmd) {
     dst->valuer_cmd = strdup(src->valuer_cmd);
+  }
+  if (src->channel_cmd) {
+    dst->channel_cmd = strdup(src->channel_cmd);
   }
   if (src->interactor_cmd) {
     dst->interactor_cmd = strdup(src->interactor_cmd);
@@ -608,6 +620,10 @@ void meta_super_run_in_problem_packet_copy(struct super_run_in_problem_packet *d
   dst->enable_group_merge = src->enable_group_merge;
   dst->ignore_sigpipe = src->ignore_sigpipe;
   dst->debug_flags = src->debug_flags;
+  dst->communication = src->communication;
+  if (src->communication_flags) {
+    dst->communication_flags = strdup(src->communication_flags);
+  }
   // hidden type_val
 }
 
@@ -637,6 +653,7 @@ void meta_super_run_in_problem_packet_free(struct super_run_in_problem_packet *p
   sarray_free((char**) ptr->test_sets);
   sarray_free((char**) ptr->checker_env);
   sarray_free((char**) ptr->valuer_env);
+  sarray_free((char**) ptr->channel_env);
   sarray_free((char**) ptr->interactor_env);
   sarray_free((char**) ptr->test_checker_env);
   sarray_free((char**) ptr->test_generator_env);
@@ -644,6 +661,7 @@ void meta_super_run_in_problem_packet_free(struct super_run_in_problem_packet *p
   sarray_free((char**) ptr->start_env);
   free(ptr->check_cmd);
   free(ptr->valuer_cmd);
+  free(ptr->channel_cmd);
   free(ptr->interactor_cmd);
   free(ptr->test_checker_cmd);
   free(ptr->test_generator_cmd);
@@ -657,6 +675,7 @@ void meta_super_run_in_problem_packet_free(struct super_run_in_problem_packet *p
   free(ptr->container_options);
   free(ptr->user_input_file);
   sarray_free((char**) ptr->checker_extra_files);
+  free(ptr->communication_flags);
   // hidden type_val
 }
 

@@ -5122,6 +5122,18 @@ do_import_problem(
   if (cfg->full_user_score >= 0) {
     prob->full_user_score = cfg->full_user_score;
   }
+  if (cfg->communication >= 2) {
+    prob->communication = cfg->communication;
+    if (cfg->communication_flags && cfg->communication_flags[0]) {
+      xstrdup3(&prob->communication_flags, cfg->communication_flags);
+    }
+    if (cfg->channel_cmd && cfg->channel_cmd[0]) {
+      xstrdup3(&prob->channel_cmd, cfg->channel_cmd);
+    }
+    // if (cfg->channel_env && cfg->channel_env[0]) {
+    //   prob->channel_env = sarray_copy(cfg->channel_env);
+    // }
+  }
   long time_limit_ms = 0;
   if (cfg->time_limit_millis > 0) {
     prob->time_limit_millis = cfg->time_limit_millis;
